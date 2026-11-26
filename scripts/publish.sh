@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
-# Builds the notes-web image and publishes it to the local registry.
-# Usage: bash scripts/publish.sh
 set -euo pipefail
-
-IMAGE="notes-web"
-REGISTRY="localhost:5050"
-
-docker build -t "$IMAGE:latest" .
+IMAGE="localhost:5050/notes-web"
+VERSION="1.0.0"
+docker build -t "$IMAGE:$VERSION" -t "$IMAGE:latest" .
+docker push "$IMAGE:$VERSION"
 docker push "$IMAGE:latest"
